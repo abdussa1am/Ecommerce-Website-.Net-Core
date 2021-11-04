@@ -1,0 +1,20 @@
+﻿@model Ecomsample.Models.SigninModel
+
+
+<form asp-action="Login" asp-controller="Account" method="post">
+
+
+
+
+
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+
+
+    <input type="submit" value="Submit" />
+</form>

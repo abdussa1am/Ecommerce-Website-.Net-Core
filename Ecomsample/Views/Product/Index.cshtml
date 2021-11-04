@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Ecomsample.Models.Product>
+
+@{
+
+    foreach (var item in Model)
+    {
+       
+       
+        <h1>@item.PName</h1>
+        <h1>@item.Category.CName</h1>
+     
+
+    }
+
+} 

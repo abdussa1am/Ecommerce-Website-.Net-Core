@@ -1,0 +1,43 @@
+﻿@model Ecomsample.Models.Product
+
+@{
+    ViewData["Title"] = "productdetails";
+}
+
+<h1>productdetails</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.CName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.productimageurl)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.productimageurl" height="400" width="400" />
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

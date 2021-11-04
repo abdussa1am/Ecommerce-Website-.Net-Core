@@ -1,0 +1,25 @@
+﻿@model Ecomsample.Models.SignUpUserModel
+
+
+<form asp-action="SignUp" asp-controller="Account" method="post">
+
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    
+
+    
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+
+    <label asp-for="ConfirmPassword"></label>
+    <input asp-for="ConfirmPassword" />
+
+    <input type="submit" value="Submit" />
+</form>

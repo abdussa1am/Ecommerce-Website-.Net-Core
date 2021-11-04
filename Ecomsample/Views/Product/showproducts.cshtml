@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Ecomsample.Models.Product>
+
+@{
+    ViewData["Title"] = "showproducts";
+}
+
+<h1>showproducts</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+
+            <div class="card" style="width: 18rem;">
+                <img src="@item.productimageurl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.PName</h5>
+                    <p class="card-text">Price: @item.price</p>
+                    <p class="card-text">Category: @item.Category.CName</p>
+                    <a asp-controller="Product" asp-action="productdetails" asp-route-id="@item.Id">Add To Cart</a>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
