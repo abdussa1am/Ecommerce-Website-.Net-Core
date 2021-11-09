@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Ecomsample.Controllers
@@ -33,16 +34,16 @@ namespace Ecomsample.Controllers
         [AcceptVerbs("Get","Post")]
         [HttpPost]
 
-        public async Task<ActionResult> IsEmailInUse(string email)
+        public async Task<ActionResult> IsEmailInUse(string Email)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(Email);
             if(user == null)
             {
                 return Json(true);
             }
             else
             {
-                return Json($"Emwil {email} is in use");
+                return Json($"Emwil {Email} is in use");
             }
 
 
@@ -102,6 +103,21 @@ namespace Ecomsample.Controllers
 
 
             return RedirectToAction("Index", "Home"); 
+        }
+        public string YourMethodName()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+            var user = User.FindFirstValue(ClaimTypes.Email);// will give the user's userName
+
+            
+
+
+            
+
+          
+            return $"name is {userId} {userName}  {user}";
+     
         }
 
 

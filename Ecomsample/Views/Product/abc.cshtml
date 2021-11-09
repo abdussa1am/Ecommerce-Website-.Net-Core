@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Ecomsample.Models.Order>
+
+@{
+    ViewData["Title"] = "abc";
+}
+
+
+@foreach (var item in Model)
+{
+    <h1>@item.Id</h1>
+    <h1>@item.ProductId</h1>
+    <h1>@item.Product.PName</h1>
+    <h1>@item.User.Name</h1>
+}

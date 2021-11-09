@@ -10,5 +10,9 @@ namespace Ecomsample.Models
     {
 
         public string Name { get; set; }
+
+        public IEnumerable<Order> Order { get; set; }
+
+
     }
 }

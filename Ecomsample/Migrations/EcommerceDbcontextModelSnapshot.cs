@@ -102,6 +102,28 @@ namespace Ecomsample.Migrations
                     b.ToTable("categories");
                 });
 
+            modelBuilder.Entity("Ecomsample.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("orders");
+                });
+
             modelBuilder.Entity("Ecomsample.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -260,6 +282,23 @@ namespace Ecomsample.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Ecomsample.Models.Order", b =>
+                {
+                    b.HasOne("Ecomsample.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ecomsample.Models.ApplicationUser", "User")
+                        .WithMany("Order")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Ecomsample.Models.Product", b =>
                 {
                     b.HasOne("Ecomsample.Models.Category", "Category")
@@ -320,6 +359,11 @@ namespace Ecomsample.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Ecomsample.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Ecomsample.Models.Category", b =>

@@ -1,6 +1,7 @@
 ﻿using Ecomsample.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +15,14 @@ namespace Ecomsample.Controllers
 {
     public class ProductController : Controller
     {
-
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly EcommerceDbcontext _db;
         private readonly IWebHostEnvironment _webHosEnvironment;
 
 
-        public ProductController(EcommerceDbcontext db , IWebHostEnvironment webHostEnvironment)
+        public ProductController(EcommerceDbcontext db , IWebHostEnvironment webHostEnvironment , UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _db = db;
             _webHosEnvironment = webHostEnvironment;
         }
@@ -64,6 +66,7 @@ namespace Ecomsample.Controllers
             return View();
         }
        
+
         public ActionResult showproducts()
         {
             var a = _db.products.Include("Category").ToList();
@@ -74,5 +77,12 @@ namespace Ecomsample.Controllers
             var a = _db.products.Where(a => a.Id == id).Include("Category").FirstOrDefault();
             return View(a);
         }
+        public ActionResult abc()
+        {
+            var a = _db.orders.Include("Product").Include("User").ToList();
+            return View(a);
+        }
+
+
     }
 }
